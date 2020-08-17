@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>School Departments</title>
+</head>
+<body>
+<div id="content"></div>
+    <script>
+        var departments = [{
+            name: 'COMPUTER SCIENCE',
+            faculty: 'Science & Engineering',
+            hod:'Mike Bavon'
+        },{
+            name: 'Education',
+            faculty: 'Education & Socialigy',
+            hod:'Tony Ngeno'
+        },{
+            name: 'Education',
+            faculty: 'Education & Socialigy',
+            hod:'Tony Ngeno'
+        },{
+            name: 'Education',
+            faculty: 'Education & Socialigy',
+            hod:'Tony Ngeno'
+        },{
+            name: 'Education',
+            faculty: 'Education & Socialigy',
+            hod:'Tony Ngeno'
+        },{
+            name: 'Education',
+            faculty: 'Education & Socialigy',
+            hod:'Tony Ngeno'
+        }];
+
+        var tableContent = '<table style="width:100%">'
+        + '<tr>'
+            + '<th>Name</th>'
+            + '<th>Faculty</th>'
+            + '<th>H.O.D</th>'
+        + '</tr>';
+
+
+        for (var idx = 0; idx<departments.length; idx++){
+            tableContent += '<tr>'
+                + '<td>' + departments[idx].name + '</td>'
+                + '<td>' + departments[idx].faculty + '</td>'
+                + '<td>' + departments[idx].hod + '</td>'
+            + '</tr>';
+        }
+
+        tableContent += '</table>';
+
+
+       document.getElementById('content').innerHTML = tableContent;
+
+    </script>
+</body>
+</html>
