@@ -30,6 +30,14 @@
       <version>8.0.21</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.9.10.5</version>
+    </dependency>
+
+
   </dependencies>
   <build>
     <finalName>SystechSkul</finalName>
