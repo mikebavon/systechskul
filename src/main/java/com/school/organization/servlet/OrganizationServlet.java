@@ -50,5 +50,26 @@ public class OrganizationServlet extends HttpServlet {
 
     }
 
+    protected  void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        ServletContext scx = getServletContext();
+        Connection dbConnection = (Connection) scx.getAttribute("dbConnection");
+
+        String name = request.getParameter("name");
+        String address = request.getParameter("address");
+
+        try {
+            PreparedStatement statement = dbConnection.prepareStatement("insert into organization(name,address) values(?,?)");
+            statement.setString(1, name==null?null: name.toUpperCase());
+            statement.setString(2, address==null?null: address.toUpperCase());
+            statement.executeUpdate();
+
+            response.getWriter().print("OK");
+
+        }catch (SQLException sqlEx){
+            sqlEx.printStackTrace();
+        }
+
+    }
+
 
 }
