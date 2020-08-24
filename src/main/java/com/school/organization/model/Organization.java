@@ -8,6 +8,8 @@ public class Organization {
 
     private String town;
 
+    private String town1;
+
     public String getName() {
         return name;
     }
@@ -25,7 +27,7 @@ public class Organization {
     }
 
     public String getTown() {
-        return town;
+        return town.toUpperCase();
     }
 
     public void setTown(String town) {

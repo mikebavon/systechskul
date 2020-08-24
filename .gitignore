@@ -9,3 +9,5 @@ SchoolMgtSystem.iml
 .classpath
 .project
 *swp
+.vscode
+src/main/webapp/js/dist
