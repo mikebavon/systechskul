@@ -1,6 +1,8 @@
 package com.school.utilities;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String name;
 
@@ -40,5 +42,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String showAge(){
+        if (name != null && name.equalsIgnoreCase("mike"))
+            return "<br> " + name + " from " + address + " is " + 34 + " Years OLD!!";
+
+        else
+            return "";
     }
 }
