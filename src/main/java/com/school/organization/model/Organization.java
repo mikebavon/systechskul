@@ -8,8 +8,6 @@ public class Organization {
 
     private String town;
 
-    private String town1;
-
     public String getName() {
         return name;
     }
@@ -27,7 +25,7 @@ public class Organization {
     }
 
     public String getTown() {
-        return town.toUpperCase();
+        return town == null? "N/a" :town.toUpperCase();
     }
 
     public void setTown(String town) {
