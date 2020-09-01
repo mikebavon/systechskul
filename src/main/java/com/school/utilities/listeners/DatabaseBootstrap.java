@@ -1,9 +1,6 @@
 package com.school.utilities.listeners;
 
-import com.school.utilities.DbConnection;
-
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import javax.annotation.Resource;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -15,12 +12,13 @@ import java.sql.Statement;
 @WebListener
 public class DatabaseBootstrap implements ServletContextListener {
 
+    @Resource(lookup = "java:jboss/datasources/SystechSkul")
+    private DataSource dataSource;
+
     public void contextInitialized(ServletContextEvent sce) {
         Statement statement = null;
 
         try {
-            InitialContext icxt = new InitialContext();
-            DataSource dataSource = (DataSource) icxt.lookup("java:jboss/datasources/SystechSkul");
             Connection connection = dataSource.getConnection();
 
             statement = connection.createStatement();
@@ -30,9 +28,6 @@ public class DatabaseBootstrap implements ServletContextListener {
 
             sce.getServletContext().setAttribute("dbConnection", connection);
 
-
-        }catch (NamingException nEx){
-            nEx.printStackTrace();
 
         }catch (SQLException sqEx){
             sqEx.printStackTrace();
