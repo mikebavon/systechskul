@@ -1,12 +1,31 @@
 package com.school.organization.model;
 
-public class Organization {
+import javax.persistence.*;
+import java.io.Serializable;
 
+@Entity
+@Table(name = "skul_organizations")
+public class Organization implements Serializable {
+
+    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column
     private String name;
 
+    @Column
     private String address;
 
+    @Column
     private String town;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

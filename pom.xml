@@ -23,6 +23,14 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/javax/javaee-api -->
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>8.0</version>
+      <scope>provided</scope>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/javax.enterprise/cdi-api -->
     <dependency>
       <groupId>javax.enterprise</groupId>
@@ -64,6 +72,27 @@
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
       <version>1.9.4</version>
+    </dependency>
+
+    <!-- Import hibernate -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>5.4.19.Final</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>6.1.5.Final</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.12</version>
     </dependency>
 
   </dependencies>

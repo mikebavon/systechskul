@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrganizationBeanI {
 
-    String add(Connection connection, Organization organization);
+    String add(Organization organization);
 
-    List<Organization> list(Connection connection);
+    List<Organization> list();
 }
