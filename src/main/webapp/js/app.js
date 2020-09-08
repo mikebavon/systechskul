@@ -49,6 +49,7 @@ SystechSkulJsLib.showGrid = function(){
 
     me.gridButtons.forEach(button => {
         console.log('Registing event for adding form');
+        console.log(button.id);
         if (button.handler == 'addButton')
             document.getElementById(button.id).addEventListener('click', function(){
                 SystechSkulJsLib.Form.call(me);

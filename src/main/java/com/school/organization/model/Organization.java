@@ -1,7 +1,11 @@
 package com.school.organization.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "skul_organizations")
@@ -18,6 +22,9 @@ public class Organization implements Serializable {
 
     @Column
     private String town;
+
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
+    private List<Faculty> faculties = new ArrayList<Faculty>();
 
     public int getId() {
         return id;
@@ -49,5 +56,19 @@ public class Organization implements Serializable {
 
     public void setTown(String town) {
         this.town = town;
+    }
+
+    @JsonIgnore
+    public List<Faculty> getFaculties() {
+        return faculties;
+    }
+
+    public void setFaculties(List<Faculty> faculties) {
+        this.faculties = faculties;
+    }
+
+    public void addFaculty(Faculty faculty){
+        faculty.setOrganization(this);
+        this.faculties.add(faculty);
     }
 }
