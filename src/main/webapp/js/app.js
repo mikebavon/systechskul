@@ -30,7 +30,11 @@ SystechSkulJsLib.showGrid = function(){
     me.gridColumns.forEach(col => {
         tableContent += `<th>${col.header}</th>`;
     });
+    tableContent += `<th></th><th></th>`;
+
     tableContent += `</tr>`;
+
+    var actionEvents = [];
 
     me.gridData.forEach(row => {
 
@@ -40,7 +44,16 @@ SystechSkulJsLib.showGrid = function(){
             tableContent += `<td>${row[col.dataIndex]}</td>`;
         });
 
+        var editBtnId = me.componentId + '-edit-' + row.id;
+        var deleteBtnId = me.componentId + '-del-' + row.id;
+
+        tableContent += `<td><button class="button editButton" id="${editBtnId}">Edit</button></td>`
+            + `<td><button class="button deleteButton" id="${deleteBtnId}">Delete</button></td>`;
+
         tableContent += `</tr>`;
+
+        actionEvents.push({editBtnId: editBtnId, deleteBtnId: deleteBtnId, recordId: row.id});
+
     });
 
     tableContent += `</table>`;
@@ -48,13 +61,37 @@ SystechSkulJsLib.showGrid = function(){
     document.getElementById('module-content').innerHTML = tableContent;
 
     me.gridButtons.forEach(button => {
-        console.log('Registing event for adding form');
-        console.log(button.id);
         if (button.handler == 'addButton')
             document.getElementById(button.id).addEventListener('click', function(){
                 SystechSkulJsLib.Form.call(me);
             });
 
+    });
+
+    actionEvents.forEach(button => {
+
+        document.getElementById(button.editBtnId).addEventListener('click', function(){
+                alert('We will edit')
+        });
+
+        document.getElementById(button.deleteBtnId).addEventListener('click', function(){
+
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function(){
+                    if (xhr.readyState == XMLHttpRequest.DONE){
+                        if (xhr.status == 200){
+                            console.log(xhr.responseText);
+                        }
+                    }
+                }
+
+                xhr.open('post', me.dataUrl, false);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send("id=" + button.recordId + "&action=delete");
+
+                SystechSkulJsLib.showGrid.call(me);
+
+        });
     });
 
 }
@@ -65,14 +102,40 @@ SystechSkulJsLib.Form = function(){
     var formContent = `<form action="#">`;
 
     me.formField.forEach(field =>{
-      formContent += `<div class="row">`
+
+        formContent += `<div class="row">`
             + `<div class="col-25">`
                 + `<label for="${field.name}">${field.label}</label>`
             + `</div>`
-            + `<div class="col-75">`
-                + `<input type="${field.type}" id="${field.id}" name="${field.name}">`
-            + `</div>`
-        + `</div>`;
+            + `<div class="col-75">`;
+
+        if (field.type == 'select'){
+            var selectStore = [];
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if (xhr.readyState == XMLHttpRequest.DONE){
+                    if (xhr.status == 200){
+                        selectStore = eval('(' + xhr.responseText + ')');
+                    }
+                }
+            }
+            xhr.open('get', field.storeModel.url, false);
+            xhr.send();
+
+            formContent += `<select id="${field.id}" name="${field.name}">`;
+            selectStore.forEach(row => {
+                formContent += `<option value="${row[field.storeModel.dataBinding.id]}">${row[field.storeModel.dataBinding.display]}</option>`;
+            });
+
+            formContent += `</select>`;
+
+        }else{
+            formContent += `<input type="${field.type}" id="${field.id}" name="${field.name}">`
+        }
+
+        formContent += `</div>`
+            + `</div>`;
 
     });
 

@@ -23,6 +23,9 @@ public class Organization implements Serializable {
     @Column
     private String town;
 
+    @Transient
+    private String action;
+
     @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
     private List<Faculty> faculties = new ArrayList<Faculty>();
 
@@ -70,5 +73,14 @@ public class Organization implements Serializable {
     public void addFaculty(Faculty faculty){
         faculty.setOrganization(this);
         this.faculties.add(faculty);
+    }
+
+    @JsonIgnore
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
     }
 }

@@ -1,5 +1,8 @@
 package com.school.organization.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Formula;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,11 +15,17 @@ public class Faculty {
     @Column
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Organization organization;
 
-    @Transient
+    @Formula("(select org.name from skul_organizations org where org.id=organization_id)")
+    private String organizationName;
+
+    @Formula("coalesce(organization_id,0)")
     private int organizationId;
+
+    @Transient
+    private String action;
 
     public int getId() {
         return id;
@@ -34,6 +43,7 @@ public class Faculty {
         this.name = name;
     }
 
+    @JsonIgnore
     public Organization getOrganization() {
         return organization;
     }
@@ -42,11 +52,27 @@ public class Faculty {
         this.organization = organization;
     }
 
+    public String getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
+    }
+
     public int getOrganizationId() {
         return organizationId;
     }
 
     public void setOrganizationId(int organizationId) {
         this.organizationId = organizationId;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
     }
 }

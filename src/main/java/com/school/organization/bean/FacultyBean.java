@@ -17,16 +17,24 @@ public class FacultyBean {
     private EntityManager em;
 
     public String add(Faculty faculty){
-        faculty.setOrganization(new Organization());
-        faculty.getOrganization().setName(faculty.getName());
-        faculty.getOrganization().setAddress("Unknown");
 
+        faculty.setOrganization(em.find(Organization.class, faculty.getOrganizationId()));
         em.merge(faculty);
 
         return "OK";
     }
 
-    public List<Organization> list(){
+    public String delete(int facultyId) throws Exception{
+        if (facultyId == 0)
+            throw new Exception("Invalid faculty details!!");
+
+        System.out.println("faculty again>>>>> " + facultyId);
+        em.remove(em.find(Faculty.class, facultyId));
+
+        return "OK";
+    }
+
+    public List<Faculty> list(){
         return em.createQuery("FROM Faculty f").getResultList();
     }
 

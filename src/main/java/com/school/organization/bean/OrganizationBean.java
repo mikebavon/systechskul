@@ -1,6 +1,5 @@
 package com.school.organization.bean;
 
-import com.school.organization.model.Faculty;
 import com.school.organization.model.Organization;
 
 import javax.ejb.Remote;
@@ -20,13 +19,16 @@ public class OrganizationBean implements OrganizationBeanI{
         if (organization == null || organization.getName() == null)
             throw new Exception("Invalid organization details!!");
 
-        for (int idx = 0; idx<20; idx++) {
-            Faculty faculty = new Faculty();
-            faculty.setName("Faculty " + idx);
-            organization.addFaculty(faculty);
-        }
-
         em.merge(organization);
+
+        return "OK";
+    }
+
+    public String delete(int organizationId) throws Exception{
+        if (organizationId == 0)
+            throw new Exception("Invalid organization details!!");
+
+        em.remove(em.find(Organization.class, organizationId));
 
         return "OK";
     }

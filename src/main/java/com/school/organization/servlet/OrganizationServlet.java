@@ -34,7 +34,11 @@ public class OrganizationServlet extends HttpServlet {
 
         try {
             BeanUtils.populate(organization, request.getParameterMap());
-            response.getWriter().print(organizationBean.add(organization));
+
+            if (organization.getAction() != null && organization.getAction().equalsIgnoreCase("delete"))
+                response.getWriter().print(organizationBean.delete(organization.getId()));
+            else
+                response.getWriter().print(organizationBean.add(organization));
 
         }catch (Exception ex){
             System.out.println(ex.getCause().getMessage());

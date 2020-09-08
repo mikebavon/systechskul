@@ -36,11 +36,6 @@
             name: 'address',
             type: 'text',
             id: 'org-address'
-        },{
-            label: 'Organization Address',
-            name: 'town',
-            type: 'text',
-            id: 'org-address'
         }]
     });
 })();

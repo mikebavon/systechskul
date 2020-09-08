@@ -34,6 +34,13 @@ public class FacultyServlet  extends HttpServlet {
 
         try {
             BeanUtils.populate(faculty, request.getParameterMap());
+
+            System.out.println(">>>>>>>>>>>>" + faculty.getAction());
+            if (faculty.getAction() != null &&  faculty.getAction().equalsIgnoreCase("delete"))
+                response.getWriter().print(facultyBean.delete(faculty.getId()));
+            else
+                response.getWriter().print(facultyBean.add(faculty));
+
         }catch (Exception ex){
             System.out.println(ex.getCause().getMessage());
         }
