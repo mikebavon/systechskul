@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.school.organization.bean.FacultyBean;
 import com.school.organization.model.Faculty;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet("/faculty")
 public class FacultyServlet  extends HttpServlet {
@@ -25,8 +27,20 @@ public class FacultyServlet  extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        ObjectMapper mapper = new ObjectMapper();
-        resp.getWriter().print(mapper.writeValueAsString(facultyBean.list()));
+        try {
+            BeanUtils.populate(faculty, req.getParameterMap());
+            ObjectMapper mapper = new ObjectMapper();
+
+            if (faculty != null && StringUtils.isNotBlank(faculty.getAction())
+                    && faculty.getAction().equalsIgnoreCase("load") && faculty.getId() != 0)
+                resp.getWriter().print(mapper.writeValueAsString(facultyBean.load(faculty.getId())));
+            else
+                resp.getWriter().print(mapper.writeValueAsString(facultyBean.list()));
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+            resp.getWriter().print(new ArrayList<Faculty>());
+        }
 
     }
 

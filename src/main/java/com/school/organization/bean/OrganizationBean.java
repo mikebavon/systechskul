@@ -1,5 +1,6 @@
 package com.school.organization.bean;
 
+import com.school.organization.model.Faculty;
 import com.school.organization.model.Organization;
 
 import javax.ejb.Remote;
@@ -22,6 +23,10 @@ public class OrganizationBean implements OrganizationBeanI{
         em.merge(organization);
 
         return "OK";
+    }
+
+    public Organization load(int organizationId){
+        return em.find(Organization.class, organizationId);
     }
 
     public String delete(int organizationId) throws Exception{

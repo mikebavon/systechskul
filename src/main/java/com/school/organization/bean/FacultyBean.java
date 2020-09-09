@@ -24,6 +24,10 @@ public class FacultyBean {
         return "OK";
     }
 
+    public Faculty load(int facultyId){
+        return em.find(Faculty.class, facultyId);
+    }
+
     public String delete(int facultyId) throws Exception{
         if (facultyId == 0)
             throw new Exception("Invalid faculty details!!");

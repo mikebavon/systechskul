@@ -27,7 +27,11 @@ public class OrganizationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         ObjectMapper mapper = new ObjectMapper();
-        resp.getWriter().print(mapper.writeValueAsString(organizationBean.list()));
+        if (organization != null && StringUtils.isNotBlank(organization.getAction())
+                && organization.getAction().equalsIgnoreCase("load") && organization.getId() != 0)
+            resp.getWriter().print(mapper.writeValueAsString(organizationBean.load(organization.getId())));
+        else
+            resp.getWriter().print(mapper.writeValueAsString(organizationBean.list()));
 
     }
 

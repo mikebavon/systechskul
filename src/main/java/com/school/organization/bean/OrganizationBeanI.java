@@ -8,6 +8,8 @@ public interface OrganizationBeanI {
 
     String add(Organization organization) throws Exception;
 
+    Organization load(int organizationId);
+
     String delete(int organizationId) throws Exception;
 
     List<Organization> list();
