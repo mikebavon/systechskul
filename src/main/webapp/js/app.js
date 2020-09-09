@@ -97,11 +97,27 @@ SystechSkulJsLib.showGrid = function(){
 
         //row edit event listeners
         document.getElementById(button.editBtnId).addEventListener('click', function(){
-            alert('We will edit')
+            //make ajax request to load record to update
+
+            var loadedFormData = {};
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if (xhr.readyState == XMLHttpRequest.DONE){
+                    if (xhr.status == 200){
+                        loadedFormData = eval('(' + xhr.responseText + ')');
+                    }
+                }
+            }
+
+            xhr.open('get', me.dataUrl + '?action=load&id=' + button.recordId, false);
+            xhr.send();
+
+            me.loadedFormData = loadedFormData;
+            SystechSkulJsLib.Form.call(me);
+
         });
 
         //row delete event listeners
-        console.log(button.deleteBtnId)
         document.getElementById(button.deleteBtnId).addEventListener('click', function(){
 
                 //make ajax request to delete record
@@ -190,6 +206,14 @@ SystechSkulJsLib.Form = function(){
     //render the form to html
     document.getElementById('module-content').innerHTML = formContent;
 
+    //if data load from servlet populate form
+    if (me.loadedFormData){
+        me.formField.forEach(field =>{
+            if(me.loadedFormData[field.name])
+                document.getElementById(field.id).value = me.loadedFormData[field.name];
+        });
+    }
+
     //create the form submit button event, that is add event to the form submit button to be able to send data to servlet
     document.getElementById(me.componentId).addEventListener('click', event => {
         event.preventDefault();
@@ -211,9 +235,6 @@ SystechSkulJsLib.Form = function(){
                 }
             }
         }
-
-        console.log(formData.substr(formData.length - 1));
-
         xhr.open('post', me.dataUrl, false);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); //add this to submit the data sent through ajax as form
         xhr.send(formData);
