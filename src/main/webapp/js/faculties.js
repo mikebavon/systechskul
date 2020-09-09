@@ -12,7 +12,8 @@
         }],
         gridButtons: [{
             label: 'Add Faculty',
-            cssClass: 'addButton',
+            cssClass: 'action-btn',
+            fontAwesomeIcon: 'fa-plus',
             handler: 'addButton',
             id: 'faculty-addButton',
         }],

@@ -12,19 +12,10 @@
         }],
         gridButtons: [{
             label: 'Add Organization',
-            cssClass: 'addButton',
+            cssClass: 'action-btn',
+            fontAwesomeIcon: 'fa-plus',
             handler: 'addButton',
             id: 'org-addButton',
-        },{
-            label: 'Edit Organization',
-            cssClass: 'editButton',
-            handler: 'editButton',
-            id: 'org-editButton',
-        },{
-            label: 'Delete Organization',
-            cssClass: 'deleteButton',
-            handler: 'deleteButton',
-            id: 'org-deleteButton',
         }],
         formField: [{
             label: 'Organization Name',
