@@ -4,6 +4,9 @@
         gridStyle: 'customers',
         componentId: 'faculty',
         gridColumns:[{
+            header: 'Id',
+            dataIndex: 'id'
+        },{
             header: 'Name',
             dataIndex: 'name'
         },{

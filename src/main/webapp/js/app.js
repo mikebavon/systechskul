@@ -101,6 +101,7 @@ SystechSkulJsLib.showGrid = function(){
         });
 
         //row delete event listeners
+        console.log(button.deleteBtnId)
         document.getElementById(button.deleteBtnId).addEventListener('click', function(){
 
                 //make ajax request to delete record
@@ -113,9 +114,10 @@ SystechSkulJsLib.showGrid = function(){
                     }
                 }
 
-                xhr.open('post', me.dataUrl, false);
+                console.log(button.recordId);
+                xhr.open('delete', me.dataUrl, false);
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhr.send("id=" + button.recordId + "&action=delete");
+                xhr.send("id=" + button.recordId);
 
                 //show the module table once done, this will auto refresh the table
                 SystechSkulJsLib.showGrid.call(me);
@@ -209,6 +211,8 @@ SystechSkulJsLib.Form = function(){
                 }
             }
         }
+
+        console.log(formData.substr(formData.length - 1));
 
         xhr.open('post', me.dataUrl, false);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); //add this to submit the data sent through ajax as form

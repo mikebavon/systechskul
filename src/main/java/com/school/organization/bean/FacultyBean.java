@@ -28,7 +28,6 @@ public class FacultyBean {
         if (facultyId == 0)
             throw new Exception("Invalid faculty details!!");
 
-        System.out.println("faculty again>>>>> " + facultyId);
         em.remove(em.find(Faculty.class, facultyId));
 
         return "OK";

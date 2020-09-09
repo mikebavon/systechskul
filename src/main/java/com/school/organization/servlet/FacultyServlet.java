@@ -31,21 +31,24 @@ public class FacultyServlet  extends HttpServlet {
     }
 
     protected  void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         try {
             BeanUtils.populate(faculty, request.getParameterMap());
-
-            System.out.println(">>>>>>>>>>>>" + faculty.getAction());
-            if (faculty.getAction() != null &&  faculty.getAction().equalsIgnoreCase("delete"))
-                response.getWriter().print(facultyBean.delete(faculty.getId()));
-            else
-                response.getWriter().print(facultyBean.add(faculty));
+            response.getWriter().print(facultyBean.add(faculty));
 
         }catch (Exception ex){
             System.out.println(ex.getCause().getMessage());
         }
 
-        response.getWriter().print(facultyBean.add(faculty));
+    }
+
+    protected  void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            BeanUtils.populate(faculty, request.getParameterMap());
+            response.getWriter().print(facultyBean.delete(faculty.getId()));
+
+        }catch (Exception ex){
+            System.out.println(ex.getCause().getMessage());
+        }
 
     }
 

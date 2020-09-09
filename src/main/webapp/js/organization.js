@@ -4,6 +4,9 @@
         gridStyle: 'customers',
         componentId: 'organization',
         gridColumns:[{
+            header: 'Id',
+            dataIndex: 'id'
+        },{
             header: 'Name',
             dataIndex: 'name'
         },{

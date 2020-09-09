@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.school.organization.bean.OrganizationBeanI;
 import com.school.organization.model.Organization;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -34,11 +35,20 @@ public class OrganizationServlet extends HttpServlet {
 
         try {
             BeanUtils.populate(organization, request.getParameterMap());
+            response.getWriter().print(organizationBean.add(organization));
 
-            if (organization.getAction() != null && organization.getAction().equalsIgnoreCase("delete"))
-                response.getWriter().print(organizationBean.delete(organization.getId()));
-            else
-                response.getWriter().print(organizationBean.add(organization));
+        }catch (Exception ex){
+            System.out.println(ex.getCause().getMessage());
+        }
+
+    }
+
+    protected  void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        try {
+            BeanUtils.populate(organization, request.getParameterMap());
+
+            response.getWriter().print(organizationBean.delete(organization.getId()));
 
         }catch (Exception ex){
             System.out.println(ex.getCause().getMessage());
