@@ -17,11 +17,8 @@ public class Organization implements Serializable {
     @Column
     private String name;
 
-    @Column
-    private String address;
-
-    @Column
-    private String town;
+    @Embedded
+    private Contact contact;
 
     @Transient
     private String action;
@@ -45,20 +42,12 @@ public class Organization implements Serializable {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getTown() {
-        return town == null? "N/a" :town.toUpperCase();
-    }
-
-    public void setTown(String town) {
-        this.town = town;
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     @JsonIgnore
