@@ -4,10 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "skul_students")
-public class Student {
-
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Student extends BaseEntity {
 
     @Embedded
     private BioData bioData;
@@ -21,14 +18,6 @@ public class Student {
     @Column
     @Enumerated(EnumType.ORDINAL)
     private Status status;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public BioData getBioData() {
         return bioData;

@@ -4,11 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "skul_lecturers")
-public class Lecturer {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Lecturer extends BaseEntity{
 
     @Embedded
     private BioData bioData;
@@ -18,14 +14,6 @@ public class Lecturer {
 
     @Embedded
     private Contact contact;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public BioData getBioData() {
         return bioData;

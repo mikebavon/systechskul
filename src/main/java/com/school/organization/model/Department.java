@@ -4,22 +4,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "skul_departments")
-public class Department {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Department extends BaseEntity {
 
     @Column
     private String name;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

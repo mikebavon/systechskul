@@ -3,16 +3,12 @@ package com.school.organization.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "skul_organizations")
-public class Organization implements Serializable {
-
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Organization extends BaseEntity {
 
     @Column
     private String name;
@@ -25,14 +21,6 @@ public class Organization implements Serializable {
 
     @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
     private List<Faculty> faculties = new ArrayList<Faculty>();
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

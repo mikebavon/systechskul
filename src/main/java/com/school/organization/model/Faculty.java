@@ -7,10 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "skul_faculties")
-public class Faculty {
-
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Faculty extends BaseEntity {
 
     @Column
     private String name;
@@ -26,14 +23,6 @@ public class Faculty {
 
     @Transient
     private String action;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
