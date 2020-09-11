@@ -1,7 +1,6 @@
 package com.school.organization.bean;
 
-import com.school.organization.model.Faculty;
-import com.school.organization.model.Organization;
+import com.school.organization.model.skul.Organization;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;

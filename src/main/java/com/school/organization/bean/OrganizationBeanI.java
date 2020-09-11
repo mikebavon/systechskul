@@ -1,6 +1,6 @@
 package com.school.organization.bean;
 
-import com.school.organization.model.Organization;
+import com.school.organization.model.skul.Organization;
 
 import java.util.List;
 

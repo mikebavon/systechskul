@@ -1,6 +1,7 @@
-package com.school.organization.model;
+package com.school.organization.model.skul;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.school.organization.model.BaseEntity;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;

@@ -1,4 +1,4 @@
-package com.school.organization.model;
+package com.school.organization.model.skul;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

@@ -1,6 +1,8 @@
 package com.school.organization.bean;
 
-import com.school.organization.model.*;
+import com.school.organization.model.motor.Audi;
+import com.school.organization.model.motor.Car;
+import com.school.organization.model.motor.Toyota;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;

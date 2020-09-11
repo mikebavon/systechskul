@@ -1,4 +1,6 @@
-package com.school.organization.model;
+package com.school.organization.model.motor;
+
+import com.school.organization.model.BaseEntity;
 
 import javax.persistence.*;
 
@@ -6,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "cars")
 //@DiscriminatorValue("N_A")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Car extends BaseEntity{
+public class Car extends BaseEntity {
 
     @Column
     private String name;

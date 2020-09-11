@@ -1,10 +1,12 @@
-package com.school.organization.model;
+package com.school.organization.model.skul;
+
+import com.school.organization.model.BaseEntity;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "skul_lecturers")
-public class Lecturer extends BaseEntity{
+public class Lecturer extends BaseEntity {
 
     @Embedded
     private BioData bioData;

@@ -1,4 +1,4 @@
-package com.school.organization.model;
+package com.school.organization.model.skul;
 
 public enum Status {
     Active,

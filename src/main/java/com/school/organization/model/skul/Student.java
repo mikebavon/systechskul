@@ -1,4 +1,6 @@
-package com.school.organization.model;
+package com.school.organization.model.skul;
+
+import com.school.organization.model.BaseEntity;
 
 import javax.persistence.*;
 

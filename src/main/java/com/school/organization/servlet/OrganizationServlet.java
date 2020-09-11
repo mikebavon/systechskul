@@ -2,7 +2,7 @@ package com.school.organization.servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.school.organization.bean.OrganizationBeanI;
-import com.school.organization.model.Organization;
+import com.school.organization.model.skul.Organization;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 

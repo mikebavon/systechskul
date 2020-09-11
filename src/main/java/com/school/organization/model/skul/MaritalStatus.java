@@ -1,4 +1,4 @@
-package com.school.organization.model;
+package com.school.organization.model.skul;
 
 public enum MaritalStatus {
     MARRIED("Married & not searching", 25, Gender.MALE),
