@@ -57,7 +57,22 @@ SystechSkulJsLib.showGrid = function(){
 
             ///finding out which data row belongs to which header or column and appending it
             me.gridColumns.forEach(col => {
-                tableContent += `<td>${row[col.dataIndex]}</td>`;
+                var objectDrillDown = (col.dataIndex).split('.');
+
+                var rowDataContent;
+                var rowObj = true;
+                objectDrillDown.forEach(arrEl => {
+                    if (rowObj){
+                        rowDataContent = row[arrEl];
+                        rowObj = false;
+                    }else{
+                        rowDataContent = rowDataContent[arrEl];
+                    }
+                });
+
+                console.log(rowDataContent);
+
+                tableContent += `<td>${rowDataContent}</td>`;
             });
 
             /*Creating the row edit and delete buttons id for which to append event listeners for editing

@@ -7,6 +7,22 @@
   <version>1.0-SNAPSHOT</version>
   <name>SystechSkul Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
+  <properties>
+    <resteasy.version>3.13.0.Final</resteasy.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>JBoss Repository</id>
+      <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+    </repository>
+    <repository>
+      <id>Alfresco Maven Repository</id>
+      <url>https://maven.alfresco.com/nexus/content/groups/public/</url>
+    </repository>
+  </repositories>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -102,6 +118,64 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.12</version>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jaxrs -->
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-jaxrs</artifactId>
+      <version>3.13.1.Final</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-client -->
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-client</artifactId>
+      <version>4.5.6.Final</version>
+    </dependency>
+
+    <!-- Import resteasy REST API -->
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-jaxrs</artifactId>
+      <version>${resteasy.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-client</artifactId>
+      <version>${resteasy.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-jaxb-provider</artifactId>
+      <version>${resteasy.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>jaxrs-api</artifactId>
+      <version>3.0.12.Final</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-multipart-provider</artifactId>
+      <version>${resteasy.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-jackson2-provider</artifactId>
+      <version>${resteasy.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sun.xml.ws</groupId>
+      <artifactId>jaxws-rt</artifactId>
+      <version>2.3.3</version>
+    </dependency>
+
 
   </dependencies>
   <build>
