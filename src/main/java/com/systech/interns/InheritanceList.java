@@ -7,28 +7,28 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-//@WebListener
+@WebListener
 public class InheritanceList implements ServletContextListener {
 
     @EJB
     private InheritanceTest inheritanceTest;
 
     public void contextInitialized(ServletContextEvent sce){
-        inheritanceTest.addSomeCars();
-        /*System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        inheritanceTest.listToyata();
+        //inheritanceTest.addSomeCars();
         System.out.println();
         System.out.println();
         System.out.println();
         System.out.println();
         System.out.println();
         System.out.println();
-        inheritanceTest.listAudi();*/
+        inheritanceTest.listToyata("Land",0, 2);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        /*inheritanceTest.listAudi();
         System.out.println();
         System.out.println();
         System.out.println();
@@ -41,7 +41,7 @@ public class InheritanceList implements ServletContextListener {
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println();
+        System.out.println();*/
 
 
 

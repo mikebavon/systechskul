@@ -2,9 +2,10 @@ package com.school.organization.model.skul;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
-public class Contact {
+public class Contact implements Serializable {
 
     @Column(name = "phone_no")
     private String phoneNo;

@@ -3,11 +3,13 @@ package com.school.organization.bean;
 import com.school.organization.model.motor.Audi;
 import com.school.organization.model.motor.Car;
 import com.school.organization.model.motor.Toyota;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 @Stateless
@@ -31,8 +33,19 @@ public class InheritanceTest {
 
     }
 
-    public void listToyata(){
-        List<Toyota> toyotas = em.createQuery("FROM Toyota t").getResultList();
+    @SuppressWarnings("unchecked")
+    public void listToyata(String searchBy, int start, int limit){
+
+  /*      List<Toyota> toyotas = em.createNamedQuery(Toyota.NQ_TOYOTA_ALL)
+                //.setFirstResult(start)
+               // .setMaxResults(limit)
+                .getResultList();*/
+
+        List<Toyota> toyotas = em.createNamedQuery(Toyota.NQ_TOYOTA_SEARCH_BY_NAME)
+                .setParameter("searchKey", searchBy)
+                //.setFirstResult(start)
+               // .setMaxResults(limit)
+                .getResultList();
 
         for(Toyota toyota : toyotas){
             System.out.println(toyota.toyotaDetails());

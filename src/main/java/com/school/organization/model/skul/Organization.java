@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.school.organization.model.BaseEntity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class Organization extends BaseEntity {
         this.contact = contact;
     }
 
+    @XmlTransient
     @JsonIgnore
     public List<Faculty> getFaculties() {
         return faculties;
