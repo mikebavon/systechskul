@@ -24,6 +24,11 @@
   </context-param>
 
   <context-param>
+    <param-name>resteasy.wider.request.matching</param-name>
+    <param-value>true</param-value>
+  </context-param>
+
+  <context-param>
     <param-name>resteasy.servlet.mapping.prefix</param-name>
     <param-value>/rest</param-value>
   </context-param>
