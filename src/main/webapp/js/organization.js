@@ -3,6 +3,8 @@
         dataUrl: 'organization',
         gridStyle: 'customers',
         componentId: 'organization',
+        formContentType: 'application/json',
+        //formContentType: 'application/x-www-form-urlencoded',
         gridColumns:[{
             header: 'Id',
             dataIndex: 'id'
@@ -11,7 +13,7 @@
             dataIndex: 'name'
         },{
             header: 'Address',
-            dataIndex: 'address'
+            dataIndex: 'contact.address'
         }],
         gridButtons: [{
             label: 'Add Organization',
@@ -27,7 +29,7 @@
             id: 'org-name'
         },{
             label: 'Organization Address',
-            name: 'address',
+            name: 'contact.address',
             type: 'text',
             id: 'org-address'
         }]

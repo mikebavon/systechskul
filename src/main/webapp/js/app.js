@@ -21,7 +21,7 @@ SystechSkulJsLib.showGrid = function(){
     }
 
     //its a get method hence calls servlet doGet method
-    xhr.open('get', me.dataUrl, false);
+    xhr.open('get', 'rest/' + me.dataUrl + '/list', false);
     xhr.send();
 
     //append the ajax response to the current object gridData, that later populates the table
@@ -233,13 +233,29 @@ SystechSkulJsLib.Form = function(){
     document.getElementById(me.componentId).addEventListener('click', event => {
         event.preventDefault();
 
-        //variable to hold the form data to be sent to the servlet for saving
-        var formData = '';
+        var formData == undefined;
 
-        //loop through the form fields to get the form input field name and value and append with an equal sign
-        me.formField.forEach(field =>{
-            formData += field.name + '=' + document.getElementById(field.id).value + '&';
-        });
+        if (me.formContentType == 'application/json'){
+            //variable to hold the form data to create json for saving rest endpoint
+            formData = {};
+
+            //loop through the form fields to create json object for saving
+            me.formField.forEach(field =>{
+                populateFormJson(formData, field.name, document.getElementById(field.id).value);
+
+            });
+
+        }else{
+
+            //variable to hold the form data to be sent to the servlet for saving
+            formData = '';
+
+            //loop through the form fields to get the form input field name and value and append with an equal sign
+            me.formField.forEach(field =>{
+                formData += field.name + '=' + document.getElementById(field.id).value + '&';
+            });
+
+        }
 
         //send the form data to servlet through ajax
         var xhr = new XMLHttpRequest();
@@ -250,9 +266,15 @@ SystechSkulJsLib.Form = function(){
                 }
             }
         }
-        xhr.open('post', me.dataUrl, false);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); //add this to submit the data sent through ajax as form
-        xhr.send(formData);
+        xhr.open('post', 'rest/' + me.dataUrl + '/save', false);
+
+        //add this to submit the data sent through ajax as form
+        xhr.setRequestHeader("Content-type",  me.formContentType? me.formContentType : "application/x-www-form-urlencoded");
+
+        if (me.formContentType == 'application/json')
+            xhr.send(JSON.stringify(formData));
+        else
+            xhr.send(formData);
 
         //auto render the grid table to auto load the table store and show all the added records
         SystechSkulJsLib.showGrid.call(me);
@@ -260,3 +282,20 @@ SystechSkulJsLib.Form = function(){
     });
 }
 
+function populateFormJson(formData, fieldName, fieldValue) {
+    var formFieldNameParts = fieldName.split('.');
+
+    lastFieldNamePartIdx = formFieldNameParts.length-1;
+    for (var i = 0; i < lastFieldNamePartIdx; ++ i) {
+        currentFieldNamePart = formFieldNameParts[i];
+
+        if (!(currentFieldNamePart in formData)){
+            formData[currentFieldNamePart] = {}
+        }
+
+        formData = formData[currentFieldNamePart];
+    }
+
+    formData[formFieldNameParts[lastFieldNamePartIdx]] = fieldValue;
+
+}

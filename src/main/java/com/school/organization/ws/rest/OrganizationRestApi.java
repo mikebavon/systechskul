@@ -15,11 +15,10 @@ public class OrganizationRestApi {
     private OrganizationBeanI organizationBean;
 
     @GET
-    @Path("/list/{name}")
+    @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response list(@PathParam(value = "name") String name){
+    public Response list(){
 
-        System.out.println("Query param name: " + name);
         return Response.status(200).entity(organizationBean.list()).build();
     }
 
@@ -30,6 +29,7 @@ public class OrganizationRestApi {
     public String save(Organization organization){
         try {
             organizationBean.add(organization);
+
         }catch (Exception ex){
             return "{\"FAILURE\":\"" + ex.getMessage() + "\"}";
         }
