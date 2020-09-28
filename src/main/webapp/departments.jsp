@@ -7,3 +7,5 @@
 <script src="./js/departments.js"></script>
 </body>
 </html>
+
+<form action="#" onclick="saveDepartment()">

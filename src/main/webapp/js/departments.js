@@ -27,3 +27,22 @@
         }]
     });
 })();
+
+document.getElementById("saveDepartment").addEventListener('click', event => {
+    event.preventDefault();
+
+    var name = document.getElementById('name');
+    var phoneNo = document.getElementById('phoneNo');
+
+    var formData = {
+        name:name,
+        contact: {
+            phoneNo: phoneNo;
+        }
+    }
+
+    submitForm(formData, 'application/json');
+});
+
+
+

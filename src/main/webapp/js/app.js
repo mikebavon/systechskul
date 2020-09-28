@@ -299,3 +299,26 @@ function populateFormJson(formData, fieldName, fieldValue) {
     formData[formFieldNameParts[lastFieldNamePartIdx]] = fieldValue;
 
 }
+
+function submitForm(formData, contentType){
+
+    //send the form data to servlet through ajax
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if (xhr.readyState == XMLHttpRequest.DONE){
+            if (xhr.status == 200){
+                console.log(xhr.responseText)
+            }
+        }
+    }
+    xhr.open('post', 'rest/' + me.dataUrl + '/save', false);
+
+    //add this to submit the data sent through ajax as form
+    xhr.setRequestHeader("Content-type",  me.formContentType? me.formContentType : "application/x-www-form-urlencoded");
+
+    if (me.formContentType == 'application/json')
+        xhr.send(JSON.stringify(formData));
+    else
+        xhr.send(formData);
+
+}

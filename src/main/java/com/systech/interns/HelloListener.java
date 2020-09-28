@@ -13,6 +13,8 @@ public class HelloListener implements ServletContextListener {
 
         ServletContext servletContext = sce.getServletContext();
         servletContext.setAttribute("dbconnection", "database will be connected here!!!!");
+
+
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
